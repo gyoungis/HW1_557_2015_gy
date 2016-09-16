@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\hw2_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\controls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\HCI557Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\HCI557Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\02_Programming_and_3D_Modeling\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C523A557-941B-3CE4-8E05-D7E10AE29922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EBEA3D3F-5D8F-33E9-9CB6-9817ED076FEE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
