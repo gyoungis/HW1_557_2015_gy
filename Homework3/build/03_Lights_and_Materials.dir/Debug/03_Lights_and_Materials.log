@@ -1,0 +1,11 @@
+﻿  main_multlight.cpp
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(89): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(97): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(100): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(106): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(109): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(115): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(118): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(124): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\main_multlight.cpp(127): warning C4305: '=' : truncation from 'double' to 'float'
+  03_Lights_and_Materials.vcxproj -> C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework3\build\Debug\03_Lights_and_Materials.exe
