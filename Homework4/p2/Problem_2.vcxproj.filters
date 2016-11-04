@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\main_multi_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\HCI557Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\controls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\CoordSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLSphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Shaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Plane3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLAppearance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\HCI557Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\CoordSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLSphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Shaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Plane3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\HCI557Datatypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLAppearanceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLAppearance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\gl_common\GLObjects3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8E54760A-28A1-3E56-898A-950D1001D752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2490C2F7-746F-3E89-AC5C-8EDBCD644CA6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

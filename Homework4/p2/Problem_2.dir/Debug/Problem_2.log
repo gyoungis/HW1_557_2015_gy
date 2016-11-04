@@ -1,0 +1,5 @@
+﻿  main_multi_texture.cpp
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\main_multi_texture.cpp(81): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\main_multi_texture.cpp(92): warning C4305: '=' : truncation from 'double' to 'float'
+C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\main_multi_texture.cpp(95): warning C4305: '=' : truncation from 'double' to 'float'
+  Problem_2.vcxproj -> C:\Users\Gavin\Desktop\ME_557\HCI-557-CG\assignments\Homework4\p2\Debug\Problem_2.exe

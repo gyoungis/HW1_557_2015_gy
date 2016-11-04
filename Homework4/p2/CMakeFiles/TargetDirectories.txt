@@ -1,0 +1,3 @@
+C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p2/CMakeFiles/ALL_BUILD.dir
+C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p2/CMakeFiles/Problem_2.dir
+C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p2/CMakeFiles/ZERO_CHECK.dir

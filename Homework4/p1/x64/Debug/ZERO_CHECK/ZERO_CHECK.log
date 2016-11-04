@@ -1,0 +1,10 @@
+﻿  Checking Build System
+  CMake is re-running because C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1/CMakeFiles/generate.stamp is out-of-date.
+    the file 'C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1/CMakeLists.txt'
+    is newer than 'C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  -- Source directory C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1
+  -- SDK directory C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1/../../../SDK
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/Gavin/Desktop/ME_557/HCI-557-CG/assignments/Homework4/p1
