@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DAE3F809-A4B9-4B84-BA5A-998F77D05D14}</ProjectGuid>
+    <RootNamespace>GPView</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 7.5.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./NURBSGeom;.\GL\inc;$(A3DT32)\include;$(CG_INC_PATH);$(CUDA_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_MBCS;NT;NT_VC12_DLLD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>cg.lib;cggl.lib;glew32.lib;opengl32.lib;glu32.lib;freeglut.lib;cudart.lib;NURBSGeom.lib;SpaACISd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CUDA_PATH)/lib/$(Platform);./GL/lib/$(Platform);$(A3DT32)\NT_VC12_DLLD\code\lib\;$(CG_LIB_PATH);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <CudaCompile>
+      <CodeGeneration>compute_35,sm_35</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./NURBSGeom;.\GL\inc;$(A3DT)\include;$(CG_INC_PATH);$(CUDA_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;_DEBUG;_CONSOLE;_MBCS;NT;NT_VC12_64_DLLD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>cg.lib;cggl.lib;glew32.lib;opengl32.lib;glu32.lib;freeglut.lib;cudart.lib;NURBSGeom.lib;SpaACISd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CUDA_PATH)/lib/$(Platform);./GL/lib/$(Platform);$(A3DT)\NT_VC12_64_DLLD\code\lib\;$(CG_LIB64_PATH);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <CodeGeneration>compute_52,sm_52</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>./NURBSGeom;.\GL\inc;$(A3DT32)\include;$(CG_INC_PATH);$(CUDA_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_MBCS;NT;NT_VC12_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>cg.lib;cggl.lib;glew32.lib;opengl32.lib;glu32.lib;freeglut.lib;cudart.lib;NURBSGeom.lib;SpaACIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CUDA_PATH)/lib/$(Platform);./GL/lib/$(Platform);$(A3DT32)\NT_VC12_DLL\code\lib\;$(CG_LIB_PATH);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <CudaCompile>
+      <CodeGeneration>compute_35,sm_35</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>./NURBSGeom;.\GL\inc;$(A3DT)\include;$(CG_INC_PATH);$(CUDA_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;NDEBUG;_CONSOLE;_MBCS;NT_VC12_64_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>cg.lib;cggl.lib;glew32.lib;opengl32.lib;glu32.lib;freeglut.lib;cudart.lib;NURBSGeom.lib;SpaACIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CUDA_PATH)/lib/$(Platform);./GL/lib/$(Platform);$(A3DT)\NT_VC12_64_DLL\code\lib;$(CG_LIB64_PATH);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <CudaCompile>
+      <CodeGeneration>compute_35,sm_35</CodeGeneration>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ACISUnlock.cpp" />
+    <ClCompile Include="CheckOutcome.cpp" />
+    <ClCompile Include="CUDAUtilities.cpp" />
+    <ClCompile Include="GeometricMoments.cpp" />
+    <ClCompile Include="GeometricOperations.cpp" />
+    <ClCompile Include="GLParameters.cpp" />
+    <ClCompile Include="GPUUtilities.cpp" />
+    <ClCompile Include="GPView.cpp" />
+    <ClCompile Include="Hausdorff.cpp" />
+    <ClCompile Include="HausdorffCUDA.cpp" />
+    <ClCompile Include="HausdorffCUDAIddo.cpp" />
+    <ClCompile Include="HausdorffIddo.cpp" />
+    <ClCompile Include="InitNURBS.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="NURBS.cpp" />
+    <ClCompile Include="NURBSGeomUtils.cpp" />
+    <ClCompile Include="OBBIntersection.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TriBoxIntersection.cpp" />
+    <ClCompile Include="TriTriIntersection.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CheckOutcome.h" />
+    <ClInclude Include="CUDAFiles\CUDAHelper.h" />
+    <ClInclude Include="CUDAFiles\cutil_math.h" />
+    <ClInclude Include="CUDAUtilities.h" />
+    <ClInclude Include="FloatVector.h" />
+    <ClInclude Include="GeometricMoments.h" />
+    <ClInclude Include="GeometricOperations.h" />
+    <ClInclude Include="GLParameters.h" />
+    <ClInclude Include="GPUUtilities.h" />
+    <ClInclude Include="Hausdorff.h" />
+    <ClInclude Include="HausdorffCUDA.h" />
+    <ClInclude Include="HausdorffCUDAIddo.h" />
+    <ClInclude Include="HausdorffIddo.h" />
+    <ClInclude Include="Includes.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="NURBS.h" />
+    <ClInclude Include="NURBSGeomUtils.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Utilities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CGFiles\BasisMultPacked.cg" />
+    <None Include="CGFiles\BBoxDistance.cg" />
+    <None Include="CGFiles\BBoxDistFilter.cg" />
+    <None Include="CGFiles\BBoxHausdorffDistance.cg" />
+    <None Include="CGFiles\BBoxHausdorffFilter1.cg" />
+    <None Include="CGFiles\BBoxHausdorffFilter2.cg" />
+    <None Include="CGFiles\BBoxHierarchy.cg" />
+    <None Include="CGFiles\BBoxHierarchyTrimmedMax.cg" />
+    <None Include="CGFiles\BBoxHierarchyTrimmedMin.cg" />
+    <None Include="CGFiles\BBoxOverlap.cg" />
+    <None Include="CGFiles\BDervEvaluate.cg" />
+    <None Include="CGFiles\BDervEvaluatePacked.cg" />
+    <None Include="CGFiles\BEvaluate.cg" />
+    <None Include="CGFiles\BEvaluatePacked.cg" />
+    <None Include="CGFiles\BoundingBoxConstant.cg" />
+    <None Include="CGFiles\BoundingBoxTrimmedConstant.cg" />
+    <None Include="CGFiles\BoundingBoxTrimmedVariable.cg" />
+    <None Include="CGFiles\BoundingBoxVariable.cg" />
+    <None Include="CGFiles\ClosestPoint.cg" />
+    <None Include="CGFiles\ComputeInterval.cg" />
+    <None Include="CGFiles\CubicBasisATI.cg" />
+    <None Include="CGFiles\CubicBasisNV.cg" />
+    <None Include="CGFiles\Curvature.cg" />
+    <None Include="CGFiles\ExactNormal.cg" />
+    <None Include="CGFiles\Find.cg" />
+    <None Include="CGFiles\Find2.cg" />
+    <None Include="CGFiles\FindDownSweep.cg" />
+    <None Include="CGFiles\FindMax.cg" />
+    <None Include="CGFiles\FindPosChange.cg" />
+    <None Include="CGFiles\FindScale.cg" />
+    <None Include="CGFiles\FindUpSweep.cg" />
+    <None Include="CGFiles\FindVertex.cg" />
+    <None Include="CGFiles\HausdorffIddo.cg" />
+    <None Include="CGFiles\Invert.cg" />
+    <None Include="CGFiles\InvertRay.cg" />
+    <None Include="CGFiles\MergeFactors.cg" />
+    <None Include="CGFiles\Moment2Point.cg" />
+    <None Include="CGFiles\Moment3Point.cg" />
+    <None Include="CGFiles\MomentError.cg" />
+    <None Include="CGFiles\MomentTriangle.cg" />
+    <None Include="CGFiles\MomentTrimMult.cg" />
+    <None Include="CGFiles\Normal.cg" />
+    <None Include="CGFiles\OBBOverlap.cg" />
+    <None Include="CGFiles\ObjectBBoxDistance.cg" />
+    <None Include="CGFiles\Occlusion.cg" />
+    <None Include="CGFiles\Passive.cg" />
+    <None Include="CGFiles\PassiveSurfaceID.cg" />
+    <None Include="CGFiles\PassiveTexture.cg" />
+    <None Include="CGFiles\PrePass.cg" />
+    <None Include="CGFiles\RationalDerivatives.cg" />
+    <None Include="CGFiles\Reduce.cg" />
+    <None Include="CGFiles\ReduceFind.cg" />
+    <None Include="CGFiles\ReduceMax.cg" />
+    <None Include="CGFiles\ReduceMaxBBox2.cg" />
+    <None Include="CGFiles\ReduceMin.cg" />
+    <None Include="CGFiles\ReduceMinBBox2.cg" />
+    <None Include="CGFiles\ReduceMinBBox4.cg" />
+    <None Include="CGFiles\ReduceMinMaxBBox2.cg" />
+    <None Include="CGFiles\ReduceMinMinBBox2.cg" />
+    <None Include="CGFiles\ReduceSum2.cg" />
+    <None Include="CGFiles\ReduceSum2Pow2.cg" />
+    <None Include="CGFiles\ReduceSum4.cg" />
+    <None Include="CGFiles\ReduceSum9.cg" />
+    <None Include="CGFiles\ReferenceList.cg" />
+    <None Include="CGFiles\SecondDerivatives.cg" />
+    <None Include="CGFiles\SecondDerivatives2Point.cg" />
+    <None Include="CGFiles\SecondDerivatives3Point.cg" />
+    <None Include="CGFiles\Silhouette.cg" />
+    <None Include="CGFiles\Stencil.cg" />
+    <None Include="CGFiles\SurfaceMultNoPingPong.cg" />
+    <None Include="CGFiles\SurfaceMultPacked.cg" />
+    <None Include="CGFiles\TransformSurface.cg" />
+    <None Include="CGFiles\TrimOverlay.cg" />
+    <None Include="CGFiles\TrimSurfaceID.cg" />
+    <None Include="CGFiles\TSpline.cg" />
+    <None Include="CGFiles\TSplineMult.cg" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="CUDAFiles\CUDABasisMult.cu" />
+    <CudaCompile Include="CUDAFiles\CUDABasisMultTextures.cu" />
+    <CudaCompile Include="CUDAFiles\CUDABBoxHausdorffDistance.cu" />
+    <CudaCompile Include="CUDAFiles\CUDABDervEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDABEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDABoundingBoxEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDAExactNormalEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDAExpansionFactorEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDAHausdorffFilter.cu" />
+    <CudaCompile Include="CUDAFiles\CUDAHausdorffIddo.cu" />
+    <CudaCompile Include="CUDAFiles\CUDANormalEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDARationalDivide.cu" />
+    <CudaCompile Include="CUDAFiles\CUDASecondDerivativeEvaluate.cu" />
+    <CudaCompile Include="CUDAFiles\CUDATransformEvaluatedPoints.cu" />
+    <CudaCompile Include="CUDAFiles\CUDATriTriHausdorffDistance.cu" />
+    <CudaCompile Include="CUDAFiles\THRUSTUtilities.cu" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 7.5.targets" />
+  </ImportGroup>
+</Project>

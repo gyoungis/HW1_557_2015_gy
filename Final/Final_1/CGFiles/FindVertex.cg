@@ -1,0 +1,25 @@
+void main( int4 inputData		: POSITION,
+		out float4 outPosData	: POSITION,
+		out float4 texCoord		: TEXCOORD0,
+		uniform int2 outputTexSize)
+{
+	int index = inputData.x ;
+	float2 offset = float2(1.0/outputTexSize.x - 1.0, 1.0/outputTexSize.y - 1.0) ;
+
+	int yPos = int(index/(outputTexSize.x*1.0));
+	int xPos = index%outputTexSize.x;
+	float2 pos = float2(2.0*xPos/outputTexSize.x, 2.0*yPos/outputTexSize.y);
+	pos += offset;
+	if (xPos == 0 && yPos!=0 && outputTexSize.x%2 == 1)
+	{
+		pos.y = 0;
+		pos.x = -.66;
+	}
+
+	if (index < 0)
+		outPosData  = float4(-10.0, -10.0, 0.0, 1.0);
+	else
+		outPosData  = float4(pos.x, pos.y, -index/100.0, 1.0);
+
+	texCoord = float4(int(inputData.y),int(inputData.z), index, 1); 
+}

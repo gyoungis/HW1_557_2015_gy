@@ -1,0 +1,26 @@
+float main(float2 coords				: TEXCOORD0,
+			uniform samplerRECT knot	: TEXUNIT0,
+			uniform samplerRECT basis	: TEXUNIT1,
+			uniform int k							):COLOR
+{
+	float d = 0;
+	float e = 0;
+//	float u			= texRECT(knot,  float2(0,coords.y));
+	float prevI		= texRECT(basis, coords);
+	coords.x+=1;
+	float prevI1	= texRECT(basis, coords);
+	
+	if ( prevI!= 0)
+	{
+		float knotI		= texRECT(knot, coords);
+		float knotIK1	= texRECT(knot, coords + float2(k-1,0));
+		d = ((k-1)*prevI)/(knotIK1-knotI);
+	}
+	if ( prevI1!= 0)
+	{
+		float knotIK = texRECT(knot, coords + float2(k,0));
+		float knotI1 = texRECT(knot, coords + float2(1,0));;
+		e = ((k-1)*prevI1)/(knotIK-knotI1);
+	}
+	return d-e;
+}

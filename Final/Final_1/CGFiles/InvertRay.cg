@@ -1,0 +1,15 @@
+float main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT minTexture  	: TEXUNIT0,
+			uniform samplerRECT maxTexture      : TEXUNIT1,
+			uniform float4 point								) : COLOR
+{
+	float4 c1 = texRECT(minTexture, coords);
+	float4 c2 = texRECT(maxTexture, coords);
+	float4 temp = point-c1;
+	float4 temp2 = c2-point;
+	
+	if (!(temp.x>0 && temp.y>0 && temp2.x>0 && temp2.y>0 ))
+	    discard;
+   
+	return 1.0;
+}

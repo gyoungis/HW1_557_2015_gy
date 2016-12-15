@@ -1,0 +1,63 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT texture		: TEXUNIT0,
+			uniform int iSize,
+			uniform int InputSize) : COLOR
+{
+//	coords=floor(coords);
+	int noOfLevels = log2(iSize);
+	int2 oOffset={0,0};
+	int NoOfElements = 0;
+	int2 origin = {0,0};
+	float4 output;
+	int no = InputSize*coords.y+coords.x+1;
+
+	for(int level=noOfLevels; level>0; level--)
+	{
+		if(level==1)
+			origin.xy = float2(0,0);
+		else 
+		{
+			origin.x = iSize;
+			origin.y=0;
+			// Go to the origin of current level
+			origin.y = exp2(noOfLevels-level+2)*(exp2(level-2)-1);
+		//	for(int cnt=1;cnt<level-1;cnt++)
+		//		origin.y+=exp2(noOfLevels-cnt);
+		}
+
+		//origin.x += 1*(oOffset.x);  // go the the current block
+		//origin.y += 1*(oOffset.y);
+		origin.xy += 1*(oOffset.xy);
+		//return float4(origin.xy,0,0);
+
+		int oldOffset = 0;
+		int flag=0;
+		int brokeAt=0;
+
+		for(oldOffset=0;oldOffset<4;oldOffset++)
+		{
+			if(flag==0)
+			{
+				int2 temp;
+				temp.x = origin.x+oldOffset%2;
+				temp.y = origin.y+oldOffset/2;
+				int ss = floor(texRECT(texture,temp));
+
+				if(NoOfElements+ss>=no)
+				{
+					if(level==1)
+						output.xy=temp.xy;
+					flag=1;
+					brokeAt = oldOffset;
+				}
+				else
+					NoOfElements += ss;//floor(texRECT(texture,temp));//x[temp[1]*iSize*3/2+temp[0]];
+			}
+		}
+		oldOffset=brokeAt;
+		oOffset.x = 2*(oOffset.x+oldOffset%2);
+		oOffset.y = 2*(oOffset.y+oldOffset/2);
+	}
+	return output;
+}
+

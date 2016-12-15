@@ -1,0 +1,36 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT texture		: TEXUNIT0,
+			uniform samplerRECT sourceTex   : TEXUNIT1,
+			uniform int2 origin,
+			uniform int3 viewport) : COLOR
+{
+	coords=floor(coords);
+	int no = coords.y*viewport.x + coords.x;
+	if(no>=viewport.z)
+		discard;
+
+	float4 oOffset = texRECT(sourceTex,coords);
+	oOffset.xy = 2*(oOffset.xy);
+	origin.xy += (oOffset.xy);
+	int4 oldOffset_flag = {0,0,0,0};
+
+	for(oldOffset_flag.x=0;oldOffset_flag.x<4;oldOffset_flag.x++)
+	{
+		if(oldOffset_flag.y==0)
+		{
+			oldOffset_flag.z = origin.x+oldOffset_flag.x%2;
+			oldOffset_flag.w = origin.y+oldOffset_flag.x/2;
+			int ss = floor(texRECT(texture,oldOffset_flag.zw));
+
+			if(oOffset.z+ss-1>=no)
+			{
+				oldOffset_flag.y=1;
+				oOffset.x = oOffset.x + (oldOffset_flag.x)%2;
+				oOffset.y = oOffset.y + (oldOffset_flag.x/2);
+			}
+			else
+				oOffset.z += ss;//x[temp[1]*iSize*3/2+temp[0]];
+		}
+	}
+	return float4(oOffset.xyz,0);
+}

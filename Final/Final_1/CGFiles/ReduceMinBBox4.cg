@@ -1,0 +1,21 @@
+float4 main(float2 coords				: TEXCOORD0,
+		   uniform samplerRECT inputTex	: TEXUNIT0):COLOR
+{
+	coords = floor(2*coords) - 0.5;
+	float4 x1 = texRECT(inputTex, coords);
+	float4 x2 = texRECT(inputTex, coords+float2(1,0));
+	float4 x3 = texRECT(inputTex, coords+float2(1,1));
+	float4 x4 = texRECT(inputTex, coords+float2(0,1));
+
+	float4 o1 = x1;
+	float4 o2 = x3;
+	float4 output = x1;
+	if ((x2.x < x1.x && x2.x > 0) || (x2.x == x1.x && x2.y > x1.y) || x1.x < 0)
+		o1 = x2;
+	if ((x4.x < x3.x && x4.x > 0) || (x4.x == x3.x && x4.y > x3.y) || x3.x < 0)
+		o2 = x4;
+	if ((o2.x < o1.x && o2.x > 0) || (o2.x == o1.x && o2.y > o1.y) || o1.x < 0)
+		output = o2;
+
+	return output;
+} 

@@ -1,0 +1,32 @@
+void main(float2 coords : TEXCOORD0,
+              uniform samplerRECT texture,
+			  uniform float2 dim,
+              uniform float4 uvinterval,
+			  out float4 xderiv : COLOR0,
+			  out float4 yderiv : COLOR1) 
+{
+	float4 c1 = texRECT(texture, coords);
+	float4 c2 = texRECT(texture, coords + float2( 0, 1));
+	float4 c4 = texRECT(texture, coords + float2(-1, 0));
+	float4 c6 = texRECT(texture, coords + float2( 0,-1));
+	float4 c8 = texRECT(texture, coords + float2( 1, 0));
+	coords = floor(coords);
+   	
+	if (coords.y == dim.y)
+		yderiv = (c1-c6);
+	else if(coords.y  == 0)
+		yderiv = (c2-c1);
+	else
+		yderiv = (c2-c6)/2.0;
+
+	if (coords.x == dim.x )
+		xderiv = (c1-c4);
+	else if(coords.x == 0)
+		xderiv = (c8-c1);
+	else
+		xderiv = (c8-c4)/2.0;
+
+	xderiv = xderiv/uvinterval.x;
+	yderiv = yderiv/uvinterval.y;
+	return;
+}

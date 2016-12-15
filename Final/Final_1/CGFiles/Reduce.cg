@@ -1,0 +1,8 @@
+float4 main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT curvePtTexture	: TEXUNIT0,
+			uniform int xDist								) : COLOR
+{
+	float4 c1 = texRECT(curvePtTexture, coords);
+	float4 c2 = texRECT(curvePtTexture, coords+float2(xDist,0));
+	return c1+c2;
+}

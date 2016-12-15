@@ -1,0 +1,37 @@
+float4 main(float2 coords				: TEXCOORD0,
+			uniform samplerRECT knot	: TEXUNIT0,
+			uniform samplerRECT basis	: TEXUNIT1,
+			uniform int k							):COLOR
+{
+	float4 prevI	= texRECT(basis, coords);
+	coords.x+=1;
+	float4 prevI1	= texRECT(basis, coords);
+	float4 knotI	= texRECT(knot, coords);
+	float4 knotIK1	= texRECT(knot, coords + float2(k-1,0));
+	float4 knotIK	= texRECT(knot, coords + float2(k,0));
+	float4 knotI1	= texRECT(knot, coords + float2(1,0));;
+
+//	d = ((k-1)*prevI)/(knotIK1-knotI);
+//	e = ((k-1)*prevI1)/(knotIK-knotI1);
+
+	float4 d = ((k-1)*prevI);
+	float4 e = ((k-1)*prevI1);
+	if ( prevI.x!= 0)
+		d.x /= (knotIK1.x-knotI.x);
+	if ( prevI.y!= 0)
+		d.y /= (knotIK1.y-knotI.y);
+	if ( prevI.z!= 0)
+		d.z /= (knotIK1.z-knotI.z);
+	if ( prevI.w!= 0)
+		d.w /= (knotIK1.w-knotI.w);
+	
+	if ( prevI1.x!= 0)
+		e.x /= (knotIK.x-knotI1.x);
+	if ( prevI1.y!= 0)
+		e.y /= (knotIK.y-knotI1.y);
+	if ( prevI1.z!= 0)
+		e.z /= (knotIK.z-knotI1.z);
+	if ( prevI1.w!= 0)
+		e.w /= (knotIK.w-knotI1.w);
+	return d-e;
+}

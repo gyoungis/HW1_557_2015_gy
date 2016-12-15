@@ -1,0 +1,46 @@
+void main(	float2 coords : TEXCOORD0,
+				uniform samplerRECT surface : TEXUNIT0,
+				uniform samplerRECT trimTex : TEXUNIT2,
+				uniform float4x4 viewmatrix,
+				uniform float magFactor,
+				out float4 cornerPointMin : COLOR0,
+				out float4 cornerPointMax : COLOR1)
+{
+	float4 v0 = texRECT(surface, coords);
+	float4 v1 = texRECT(surface, coords + float2( 1, 0));
+	float4 v2 = texRECT(surface, coords + float2( 1, 1));
+	float4 v3 = texRECT(surface, coords + float2( 0, 1));
+
+	float t0 = texRECT(trimTex, coords);
+	float t1 = texRECT(trimTex, coords + float2( 1, 0));
+	float t2 = texRECT(trimTex, coords + float2( 1, 1));
+	float t3 = texRECT(trimTex, coords + float2( 0, 1));
+	
+
+	if (t0 == 0 && t1 == 0 && t2 == 0 && t3 == 0)
+	{
+		cornerPointMin = float4(0, 0, 0, 0);
+		cornerPointMax = float4(0, 0, 0, 0);
+	}
+	else
+	{
+		v0 = mul(viewmatrix,v0);
+		v1 = mul(viewmatrix,v1);
+		v2 = mul(viewmatrix,v2);
+		v3 = mul(viewmatrix,v3);
+
+		// Perspective divide
+		v0 /= v0.w;
+		v1 /= v1.w;
+		v2 /= v2.w;
+		v3 /= v3.w;
+
+		cornerPointMin = min(min(v0,v1),min(v2,v3));
+		cornerPointMin.xyz = cornerPointMin.xyz - magFactor;
+		cornerPointMin.w = 1;
+
+		cornerPointMax = max(max(v0,v1),max(v2,v3));
+		cornerPointMax.xyz = cornerPointMax.xyz + magFactor;
+		cornerPointMax.w = 1;
+	}
+}

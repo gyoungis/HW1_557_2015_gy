@@ -1,0 +1,19 @@
+float main(float2 coords				: TEXCOORD0,
+			uniform samplerRECT texture	: TEXUNIT0,
+			uniform float2 origin,
+			uniform float2 parentOrigin,
+			uniform float yDirection	) : COLOR
+{
+	coords = floor(coords);
+	float2 coords2 = coords;
+	if (yDirection == 1)
+		coords2.y = floor(coords.y/2);
+	else
+		coords2.x = floor(coords.x/2);
+	
+	float c = texRECT(texture, coords2 + parentOrigin);
+	if ((yDirection == 1 && int(coords.y)%2 == 1) || (yDirection == 0 && int(coords.x)%2 == 1))
+		c += texRECT(texture, coords + origin);
+
+	return  c;
+}

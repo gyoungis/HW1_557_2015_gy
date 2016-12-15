@@ -1,0 +1,31 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT ctrlPts		: TEXUNIT0,
+			uniform samplerRECT uCtrlIndex	: TEXUNIT1,
+			uniform samplerRECT vCtrlIndex	: TEXUNIT2,
+			uniform samplerRECT uBasisFunc	: TEXUNIT3,
+			uniform samplerRECT vBasisFunc	: TEXUNIT4,
+			uniform samplerRECT surfPtSrc	: TEXUNIT5,
+			uniform int uPass,
+			uniform int vPass) : COLOR
+{
+	float4 surfPtOld	= texRECT(surfPtSrc,coords);
+
+	float2 uTexIndex = float2(uPass+0.5,coords.x);
+	float2 vTexIndex = float2(vPass+0.5,coords.y);
+	float uBasis	= texRECT(uBasisFunc,uTexIndex);
+	float vBasis	= texRECT(vBasisFunc,vTexIndex);
+	float uCtrlIndexPos = texRECT(uCtrlIndex,float2(coords.x,0))+uPass+0.5;
+	float vCtrlIndexPos = texRECT(vCtrlIndex,float2(coords.y,0))+vPass+0.5;
+	float4 ctrlPt	= texRECT(ctrlPts,float2(uCtrlIndexPos,vCtrlIndexPos));
+
+	float4 surfPt = float4(0,0,0,0);
+	
+	surfPt.w = ctrlPt.w*uBasis*vBasis;
+	surfPt.xyz = ctrlPt.xyz*surfPt.w;
+	
+	if (uPass==0 && vPass==0)
+		return surfPt;
+	else
+		return surfPt+surfPtOld;
+}
+

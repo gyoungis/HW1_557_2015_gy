@@ -1,0 +1,10 @@
+float main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT texture		: TEXUNIT0) : COLOR
+{
+	return texRECT(texture,coords).x;
+/*	if(texRECT(texture,coords).x>0)
+	   return 1.0;
+	else
+	   return 0.0;
+*/
+} 

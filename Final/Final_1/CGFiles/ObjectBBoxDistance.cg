@@ -1,0 +1,27 @@
+float main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT bBoxMinA		: TEXUNIT0,
+			uniform samplerRECT bBoxMaxA		: TEXUNIT1,
+			uniform samplerRECT bBoxMinB		: TEXUNIT2,
+			uniform samplerRECT bBoxMaxB		: TEXUNIT3 ):COLOR
+{
+	float4 boxMinA = texRECT(bBoxMinA, float2(coords.x,0.5));
+	float4 boxMaxA = texRECT(bBoxMaxA, float2(coords.x,0.5));
+	float4 boxMinB = texRECT(bBoxMinB, float2(coords.y,0.5)); 
+	float4 boxMaxB = texRECT(bBoxMaxB, float2(coords.y,0.5));
+
+	float3 boxCenterA	=(boxMaxA.xyz + boxMinA.xyz) * 0.5;
+	float3 boxExtentA	=(boxMaxA.xyz - boxMinA.xyz) * 0.5;
+						 
+	float3 boxCenterB	=(boxMaxB.xyz + boxMinB.xyz) * 0.5;
+	float3 boxExtentB	=(boxMaxB.xyz - boxMinB.xyz) * 0.5;
+
+	float3 centerDistAB = abs(boxCenterB - boxCenterA);
+	float3 maxDistAB = centerDistAB + boxExtentA + boxExtentB;
+	float3 minDistAB = max(centerDistAB - boxExtentA - boxExtentB, float3(0, 0, 0));
+
+	float4 distMinMax = float4(0, 0, coords.x, coords.y);
+	distMinMax.x = length(minDistAB); 
+	distMinMax.y = length(maxDistAB) - distMinMax.x;
+	
+	return distMinMax;
+}

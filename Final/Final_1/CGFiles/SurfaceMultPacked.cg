@@ -1,0 +1,52 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT ctrlPts		: TEXUNIT0,
+			uniform samplerRECT uCtrlIndex	: TEXUNIT1,
+			uniform samplerRECT vCtrlIndex	: TEXUNIT2,
+			uniform samplerRECT uBasisFunc	: TEXUNIT3,
+			uniform samplerRECT vBasisFunc	: TEXUNIT4,
+			uniform samplerRECT surfPtSrc	: TEXUNIT5,
+			uniform int uLen,
+			uniform int vLen,
+			uniform int uPass,
+			uniform int vPass) : COLOR
+{
+	float4 surfPtOld	= texRECT(surfPtSrc,coords);
+
+	int uIndex = floor(coords.x/uLen);
+	int vIndex = floor(coords.y/vLen);
+	float2 uTexIndex = float2(uPass+0.5,coords.x - uIndex*uLen);
+	float2 vTexIndex = float2(vPass+0.5,coords.y - vIndex*vLen);
+	float4 uBasis	= texRECT(uBasisFunc,uTexIndex);
+	float4 vBasis	= texRECT(vBasisFunc,vTexIndex);
+	float uCtrlIndexPos = texRECT(uCtrlIndex,float2(coords.x,0))+uPass+0.5;
+	float vCtrlIndexPos = texRECT(vCtrlIndex,float2(coords.y,0))+vPass+0.5;
+	float4 ctrlPt	= texRECT(ctrlPts,float2(uCtrlIndexPos,vCtrlIndexPos));
+
+	float4 surfPt=float4(0,0,0,0);
+	
+	if (uIndex==0)
+		surfPt.w = ctrlPt.w*uBasis.x;
+	if (uIndex==1)
+		surfPt.w = ctrlPt.w*uBasis.y;
+	if (uIndex==2)
+		surfPt.w = ctrlPt.w*uBasis.z;
+	if (uIndex==3)
+		surfPt.w = ctrlPt.w*uBasis.w;
+
+	if (vIndex==0)
+		surfPt.w *= vBasis.x;
+	if (vIndex==1)
+		surfPt.w *= vBasis.y;
+	if (vIndex==2)
+		surfPt.w *= vBasis.z;
+	if (vIndex==3)
+		surfPt.w *= vBasis.w;
+
+	surfPt.xyz = ctrlPt.xyz*surfPt.w;
+	
+	if (uPass==0 && vPass==0)
+		return surfPt;
+	else
+		return surfPt+surfPtOld;
+}
+

@@ -1,0 +1,58 @@
+float3 main(	float2 coords					: TEXCOORD0,
+				uniform samplerRECT uDervTex	: TEXUNIT0,
+				uniform samplerRECT vDervTex	: TEXUNIT1)	: COLOR
+{
+	float4 uDerv = texRECT(uDervTex, coords);
+	float4 vDerv = texRECT(vDervTex, coords);
+	float delta = 1e-3;
+	if (length(uDerv.xyz) < delta)
+	{
+		float2 offset;
+		if(coords.x == 0)
+			offset.x = 1;
+		else
+			offset.x = -1;
+		if(coords.y == 0)
+			offset.y = 1;
+		else
+			offset.y = -1;
+		uDerv = texRECT(uDervTex, coords + offset);
+	}
+
+	if (length(vDerv.xyz) < delta)
+	{
+		float2 offset;
+		if(coords.x == 0)
+			offset.x = 1;
+		else
+			offset.x = -1;
+		if(coords.y == 0)
+			offset.y = 1;
+		else
+			offset.y = -1;
+		vDerv = texRECT(vDervTex, coords + offset);
+	}
+
+/*	if (normal.x == 0 && normal.y == 0 && normal.z == 0)
+	{
+		float2 offset;
+		if(coords.x == 0)
+			offset.x = 1;
+		else
+			offset.x = -1;
+		if(coords.y == 0)
+			offset.y = 1;
+		else
+			offset.y = -1;
+		uDerv = texRECT(uDervTex, coords + offset);
+		vDerv = texRECT(vDervTex, coords + offset);
+		normal = cross(uDerv.xyz, vDerv.xyz);
+	}
+*/
+	float3 normal = cross(uDerv.xyz, vDerv.xyz);
+
+//	if (length(normal) < delta)
+//		normal = float3(1, 0, 0);
+
+	return normal;
+}

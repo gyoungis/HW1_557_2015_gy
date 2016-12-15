@@ -1,0 +1,36 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT ctrlPts		: TEXUNIT0,
+			uniform samplerRECT uBasisVal	: TEXUNIT1,
+			uniform samplerRECT vBasisVal	: TEXUNIT2,
+			uniform samplerRECT evalPtIndex	: TEXUNIT3,
+			uniform samplerRECT evalPtSrc	: TEXUNIT4,
+			uniform int nu,
+			uniform int passNum) : COLOR
+{
+	float4 surfPt = float4(0,0,0,0);
+	
+	float ctrlIndexVal =  texRECT(evalPtIndex,coords);
+	
+	if (ctrlIndexVal != -1)
+	{
+		int vIndex = floor(ctrlIndexVal/nu); 
+		int uIndex = ctrlIndexVal - vIndex*nu;
+		float2 ctrlPtCoords = float2(uIndex + 0.5,vIndex + 0.5);
+		
+		float4 ctrlPt = texRECT(ctrlPts  ,ctrlPtCoords);
+		float uBasis  = texRECT(uBasisVal,coords);
+		float vBasis  = texRECT(vBasisVal,coords);
+		
+		surfPt.w = ctrlPt.w * uBasis * vBasis;
+		surfPt.xyz = ctrlPt.xyz*surfPt.w;
+
+	}
+
+	if (passNum==0)
+		return surfPt;
+	else
+	{
+		float4 curvePtOld = texRECT(evalPtSrc,coords);
+		return surfPt + curvePtOld;
+	}
+}

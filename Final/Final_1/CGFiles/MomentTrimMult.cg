@@ -1,0 +1,8 @@
+float4 main(float2 coords : TEXCOORD0,
+			uniform samplerRECT momentTex	: TEXUNIT0,
+			uniform samplerRECT trimTex		: TEXUNIT1) : COLOR0
+{
+	float4 moment	= texRECT(momentTex,coords);
+	float trim		= texRECT(trimTex,coords);
+	return moment*trim;
+}

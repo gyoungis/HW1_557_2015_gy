@@ -1,0 +1,19 @@
+float4 main(float2 coords : TEXCOORD0,
+			uniform samplerRECT vertex1Tex		: TEXUNIT0,
+			uniform samplerRECT vertex2Tex		: TEXUNIT1,
+			uniform samplerRECT vertex3Tex		: TEXUNIT2 ) : COLOR0
+{
+	float4 v0	= texRECT(vertex1Tex, coords);
+	float4 v1	= texRECT(vertex2Tex, coords);
+	float4 v2	= texRECT(vertex3Tex, coords);
+
+	float4 midPoint = (v0 + v1 + v2)/3.0;
+	float4 momentFunction = float4(1.0, midPoint.x, midPoint.y, midPoint.z*.5);
+
+	float3 v0v1 = v1.xyz - v0.xyz;
+	float3 v0v2 = v2.xyz - v0.xyz;
+	float3 n = cross(v0v1, v0v2);
+	float dMoment  =  n.z*midPoint.z*0.5;
+	float4 approxTriMoment = momentFunction*dMoment;
+	return approxTriMoment;
+}

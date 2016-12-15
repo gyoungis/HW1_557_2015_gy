@@ -1,0 +1,24 @@
+float4 main(float2 coords : TEXCOORD0,
+			uniform samplerRECT surfaceTex	: TEXUNIT0,
+			uniform samplerRECT normalTex	: TEXUNIT1,
+			uniform float dS							) : COLOR0
+{
+	float4 point	= texRECT(surfaceTex,coords);
+	point.xyz /= point.w;
+	float4 normal	= texRECT(normalTex,coords);
+
+	// uWeight*vWeight*momentFunction*normal[2]*surfPoint[2]*dS
+	float4 moment;
+	int2 coordsInt = floor(coords);
+	float uWeight = 5.0/9.0;
+	float vWeight = uWeight;
+	if (coordsInt.x%3 == 1)
+		uWeight = 8.0/9.0;
+	if (coordsInt.y%3 == 1)
+		vWeight = 8.0/9.0;
+
+	moment.x = uWeight*vWeight*normal.z*point.z*dS;
+	moment.yzw = point.xyz*moment.x;
+	moment.w *= 0.5;
+	return moment;
+}

@@ -1,0 +1,12 @@
+float4 main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT texture			: TEXUNIT0,
+			uniform samplerRECT textureInput	: TEXUNIT1) : COLOR
+{
+	float c1 = texRECT(texture, coords);
+	float c2 = texRECT(textureInput, coords);
+	float c = -1;
+	if (c2 == 1)
+		c = c1;
+
+	return float4(c,(coords.x),(coords.y),0);
+}

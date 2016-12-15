@@ -1,0 +1,12 @@
+float main(float2 coords				: TEXCOORD0,
+			uniform samplerRECT texture	: TEXUNIT0	) : COLOR
+{
+	coords = 2*floor(coords);// + float2(0.5,0.5);
+
+	float x1 = texRECT(texture,coords);
+	float x2 = texRECT(texture,coords+float2(1,0));
+	float x3 = texRECT(texture,coords+float2(1,1));
+	float x4 = texRECT(texture,coords+float2(0,1));
+	
+	return max(max((x1),(x2)),max((x3),(x4)));
+} 

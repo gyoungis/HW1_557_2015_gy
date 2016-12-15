@@ -1,0 +1,28 @@
+float main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT normalTexture  	: TEXUNIT0,
+			uniform float3 v,											// View vector
+			uniform float delta								) : COLOR
+{
+	float4 n1 = texRECT(normalTexture, coords);
+	float4 n2 = texRECT(normalTexture, coords+float2(1,0));
+	float4 n3 = texRECT(normalTexture, coords+float2(1,1));
+	float4 n4 = texRECT(normalTexture, coords+float2(0,1));
+	float3 n1vec = n1.xyz;
+	float3 n2vec = n2.xyz;
+	float3 n3vec = n3.xyz;
+	float3 n4vec = n4.xyz;
+	int signDotP1 = dot(n1vec,v)>0?1:-1;
+	int signDotP2 = dot(n2vec,v)>0?1:-1;
+	int signDotP3 = dot(n3vec,v)>0?1:-1;
+	int signDotP4 = dot(n4vec,v)>0?1:-1;
+
+	if (	signDotP1*signDotP2 > 0 
+		&&	signDotP2*signDotP3 > 0
+		&&	signDotP3*signDotP4 > 0
+		&&	signDotP4*signDotP1 > 0
+		&&	signDotP1*signDotP3 > 0
+		&&	signDotP2*signDotP4 > 0 )
+		discard;
+
+	return 1.0;
+}

@@ -1,0 +1,29 @@
+float4 main(	float2 coords						: TEXCOORD0,
+				uniform samplerRECT uDervTex		: TEXUNIT0,
+				uniform samplerRECT vDervTex		: TEXUNIT1,
+				uniform samplerRECT uuSecondDervTex	: TEXUNIT2,
+				uniform samplerRECT uvSecondDervTex	: TEXUNIT3,
+				uniform samplerRECT vvSecondDervTex	: TEXUNIT4	)	: COLOR
+{
+	float4 uDerv = texRECT(uDervTex, coords);
+	float4 vDerv = texRECT(vDervTex, coords);
+	float4 uuSecondDerv = texRECT(uuSecondDervTex, coords);
+	float4 uvSecondDerv = texRECT(uvSecondDervTex, coords);
+	float4 vvSecondDerv = texRECT(vvSecondDervTex, coords);
+
+	float3 normal = cross(uDerv.xyz, vDerv.xyz);
+	float E = dot(uDerv.xyz, uDerv.xyz);
+	float F = dot(uDerv.xyz, vDerv.xyz);
+	float G = dot(vDerv.xyz, vDerv.xyz);
+
+	float L = dot(uuSecondDerv.xyz, normal);
+	float M = dot(uvSecondDerv.xyz, normal);
+	float N = dot(vvSecondDerv.xyz, normal);
+
+	float T1 = G*L - 2*F*M + E*N;
+	float T2 = E*G - F*F;
+	float T3 = L*N - M*M;
+	float k1 = (T1 + sqrt(T1*T1 - 4*T2*T3))/(2*T2);
+	float k2 = (T1 - sqrt(T1*T1 - 4*T2*T3))/(2*T2);
+	return float4(k1*k2/1000000,(k1+k2)/1000,0,0);
+}

@@ -1,0 +1,27 @@
+void main(float2 coords						: TEXCOORD0,
+				uniform samplerRECT texture,
+				uniform float4 uvInterval,
+				out float4 xDeriv			: COLOR0,
+				out float4 yDeriv			: COLOR1) 
+{
+	coords = floor(coords)*3+0.5;
+	float4 c1 = texRECT(texture, coords);
+	float4 c2 = texRECT(texture, coords + float2( 1, 0));
+	float4 c3 = texRECT(texture, coords + float2( 2, 0));
+	float4 c4 = texRECT(texture, coords + float2( 0, 1));
+	float4 c5 = texRECT(texture, coords + float2( 1, 1));
+	float4 c6 = texRECT(texture, coords + float2( 2, 1));
+	float4 c7 = texRECT(texture, coords + float2( 0, 2));
+	float4 c8 = texRECT(texture, coords + float2( 1, 2));
+	float4 c9 = texRECT(texture, coords + float2( 2, 2));
+	
+//	xDeriv = max(max(c2 - c1, c3 - c2), max( max(c5 - c4, c6 - c5), max( c8 - c7, c9 - c8)));
+//	yDeriv = max(max(c4 - c1, c7 - c4), max( max(c5 - c2, c8 - c5), max( c6 - c3, c9 - c6)));
+
+	xDeriv = (c1 + c3 - 2*c2 + c4 + c6 - 2*c5 + c7 + c9 - 2*c8)/3.0;
+	yDeriv = (c1 + c7 - 2*c4 + c2 + c8 - 2*c5 + c3 + c9 - 2*c6)/3.0;
+
+	xDeriv /= uvInterval.x;
+	yDeriv /= uvInterval.y;
+	return;
+}

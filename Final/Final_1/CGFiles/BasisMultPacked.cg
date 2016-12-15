@@ -1,0 +1,21 @@
+float4 main(float2 coords					: TEXCOORD0,
+			uniform samplerRECT cntlPts		: TEXUNIT0,
+			uniform samplerRECT basisFunc	: TEXUNIT1,
+			uniform int texHeight):COLOR
+{
+	float4 cntlPt	= texRECT(cntlPts,coords);
+	int index = floor(coords.y/texHeight);
+	float2 texIndex = float2(coords.x,coords.y - index*texHeight);
+	float4 basis	= texRECT(basisFunc,texIndex);
+	float4 curvePt=float4(0,0,0,0);
+	if (index==0)
+		curvePt.w = basis.x*cntlPt.w;
+	if (index==1)
+		curvePt.w = basis.y*cntlPt.w;
+	if (index==2)
+		curvePt.w = basis.z*cntlPt.w;
+	if (index==3)
+		curvePt.w = basis.w*cntlPt.w;
+	curvePt.xyz = cntlPt.xyz*curvePt.w;
+	return curvePt;
+}

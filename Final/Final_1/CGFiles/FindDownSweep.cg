@@ -1,0 +1,10 @@
+float main(float2 coords				: TEXCOORD0,
+			uniform samplerRECT texture	: TEXUNIT0,
+			uniform float2 origin,
+			uniform float2 xyDist					) : COLOR
+{
+	coords = coords + origin;
+	float c1 = texRECT(texture, coords);
+	float c2 = texRECT(texture, coords+xyDist);
+	return c1+c2;
+}

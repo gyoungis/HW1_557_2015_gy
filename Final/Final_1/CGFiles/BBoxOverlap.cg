@@ -1,0 +1,47 @@
+/*
+float isOverlapping(float4 minPointA, float4 maxPointA, float4 minPointB, float4 maxPointB)
+{
+	float4 overlap = min(maxPointA,maxPointB) - max(minPointA,minPointB);
+	if (overlap.x>0 && overlap.y>0 && overlap.z>0)
+		return 1;
+	else
+		return 0;
+}
+*/
+
+float main(float2 coords						: TEXCOORD0,
+			uniform samplerRECT referenceList	: TEXUNIT0,
+			uniform samplerRECT bBoxMinA		: TEXUNIT1,
+			uniform samplerRECT bBoxMaxA		: TEXUNIT2,
+			uniform samplerRECT bBoxMinB		: TEXUNIT3,
+			uniform samplerRECT bBoxMaxB		: TEXUNIT4,
+			uniform float levelOrigin						):COLOR
+{
+	int indexA = int(coords.x)%4;
+	int indexB = int(coords.y)%4;
+	float pixelOffset = 0.5;
+
+	float2 referenceListIndex = floor(coords/4.0) + pixelOffset.xx;
+	float4 indexOffset = texRECT(referenceList, referenceListIndex);
+
+	if ( indexOffset.x < 0 )
+		discard;
+
+	float2 texIndexA = float2(levelOrigin + indexOffset.x + indexA%2, indexOffset.y + floor(indexA/2.0));
+	float2 texIndexB = float2(levelOrigin + indexOffset.z + indexB%2, indexOffset.w + floor(indexB/2.0));
+
+	float4 minPointA	= texRECT(bBoxMinA, texIndexA);
+	float4 maxPointA	= texRECT(bBoxMaxA, texIndexA);
+	float4 minPointB	= texRECT(bBoxMinB, texIndexB);
+	float4 maxPointB	= texRECT(bBoxMaxB, texIndexB);
+
+	float4 overlap = min(maxPointA,maxPointB) - max(minPointA,minPointB);
+	float delta = 1e-2;
+	if (overlap.x<delta || overlap.y<delta || overlap.z<delta)
+		discard;
+
+//	if (!isOverlapping(minPointA, maxPointA, minPointB, maxPointB))
+//		discard;
+
+	return 1.0;
+}

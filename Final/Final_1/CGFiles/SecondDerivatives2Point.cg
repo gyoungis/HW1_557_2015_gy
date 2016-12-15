@@ -1,0 +1,22 @@
+void main(float2 coords						: TEXCOORD0,
+				uniform samplerRECT texture,
+				uniform float4 uvInterval,
+				out float4 xDeriv			: COLOR0,
+				out float4 yDeriv			: COLOR1) 
+{
+	coords = floor(coords)*2+0.5;
+	float4 c1 = texRECT(texture, coords);
+	float4 c2 = texRECT(texture, coords + float2( 1, 0));
+	float4 c3 = texRECT(texture, coords + float2( 0, 1));
+	float4 c4 = texRECT(texture, coords + float2( 1, 1));
+	
+//	xDeriv = max(c2 - c1, c4 - c3);
+//	yDeriv = max(c3 - c1, c4 - c2);
+
+	xDeriv = (c2 - c1 + c4 - c3)/2.0;
+	yDeriv = (c3 - c1 + c4 - c2)/2.0;
+
+	xDeriv /= uvInterval.x;
+	yDeriv /= uvInterval.y;
+	return;
+}
