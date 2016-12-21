@@ -1,8 +1,0 @@
-float4 main(	float2 coords : TEXCOORD0,
-			uniform samplerRECT surface : TEXUNIT0,
-			uniform float4x4 matrix) :COLOR0
-{
-	float4 v = texRECT(surface, coords);
-	float4 vTrans = mul(matrix,v);
-	return vTrans;
-}

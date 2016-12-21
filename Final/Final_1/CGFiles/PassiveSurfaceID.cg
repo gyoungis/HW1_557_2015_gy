@@ -1,4 +1,0 @@
-float4 main(uniform float surfaceID) : COLOR
-{
-	return float4(surfaceID,0,0,0);
-} 

@@ -1,9 +1,0 @@
-float main(	float2 coords				: TEXCOORD0,
-			uniform samplerRECT texture	: TEXUNIT0,
-			uniform float maxVal					) : COLOR
-{
-	float4 bbox = texRECT(texture, coords);
-	if (bbox.x > maxVal || bbox.x < 0)
-		discard;
-	return 1.0;
-} 

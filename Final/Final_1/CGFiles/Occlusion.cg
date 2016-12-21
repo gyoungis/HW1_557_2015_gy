@@ -1,8 +1,0 @@
-float main(			float2 coords	: TEXCOORD0,
-			uniform samplerRECT texture	: TEXUNIT0) : COLOR
-{
-	float c = texRECT(texture, coords);
-	if (c != 1.0)
-		discard;
-	return 1.0;
-} 
